@@ -75,7 +75,7 @@ La API está desarrollada en C# con .NET, utilizando Entity Framework y SQLite c
   **Ejemplo de solicitud con `curl`:**
 
   ```bash
-  curl -X POST http://localhost:5000/user/     -H "Content-Type: application/json"     -d '{
+  curl -X POST http://localhost:5014/user/     -H "Content-Type: application/json"     -d '{
           "username": "usuario123",
           "password": "contraseñaSegura"
         }'
@@ -109,7 +109,7 @@ La API está desarrollada en C# con .NET, utilizando Entity Framework y SQLite c
   **Ejemplo de solicitud con `curl`:**
 
   ```bash
-  curl -X POST http://localhost:5000/wine/     -H "Content-Type: application/json"     -d '{
+  curl -X POST http://localhost:5014/wine/     -H "Content-Type: application/json"     -d '{
           "name": "Cabernet Sauvignon",
           "variety": "Tinto",
           "year": 2020,
@@ -131,7 +131,7 @@ La API está desarrollada en C# con .NET, utilizando Entity Framework y SQLite c
   **Ejemplo de solicitud con `curl`:**
 
   ```bash
-  curl -X GET http://localhost:5000/wine/
+  curl -X GET http://localhost:5014/wine/
   ```
 
 ## Códigos de Estado
