@@ -5,7 +5,7 @@ using Services;
 
 namespace WineInventory.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/wine")]
     [ApiController]
     public class WineController : ControllerBase
     {
