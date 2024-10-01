@@ -18,7 +18,7 @@ namespace Data.Repository
                 Variety = "Malbec",
                 Year = 2018,
                 Region = "Mendoza",
-                Stock = 50,
+                Stock = 33,
                 CreatedAt = new DateTime(2020, 5, 15)
             },
             new Wine
@@ -28,7 +28,7 @@ namespace Data.Repository
                 Variety = "Cabernet Sauvignon",
                 Year = 2019,
                 Region = "La Rioja",
-                Stock = 30,
+                Stock = 46,
                 CreatedAt = new DateTime(2021, 3, 10)
             },
             new Wine
@@ -38,7 +38,7 @@ namespace Data.Repository
                 Variety = "Syrah",
                 Year = 2020,
                 Region = "Salta",
-                Stock = 75,
+                Stock = 28,
                 CreatedAt = new DateTime(2022, 1, 20)
             },
             new Wine
@@ -48,7 +48,7 @@ namespace Data.Repository
                 Variety = "Chardonnay",
                 Year = 2021,
                 Region = "Patagonia",
-                Stock = 40,
+                Stock = 63,
                 CreatedAt = new DateTime(2023, 2, 15)
             },
             new Wine
@@ -58,7 +58,7 @@ namespace Data.Repository
                 Variety = "Torrontés",
                 Year = 2022,
                 Region = "Catamarca",
-                Stock = 25,
+                Stock = 28,
                 CreatedAt = new DateTime(2023, 6, 5)
             }
         };
