@@ -1,10 +1,13 @@
 ﻿using Common.Models;
+using Data.Entities;
 
 namespace Services
 {
     public interface IWineServices
     {
-        void AddWine(CreateWineDTO createWineDTO);
-        Dictionary<string, int> GetAllWinesStock();
+        int AddWine(CreateWineDTO createWineDTO);
+        IEnumerable<Wine> GetWines();
+        void UpdateWineStock(int id, int stock);
+        IEnumerable<Wine> GetByVariety(string variety);
     }
 }

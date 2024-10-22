@@ -1,39 +1,47 @@
 ﻿using Common.Models;
 using Data.Entities;
 using Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Services
 {
     public class UserServices : IUserServices
     {
-        public readonly IUserHardCodedDBRepository _userHardCodedDBRepository;
-        public UserServices(IUserHardCodedDBRepository userHardCodedDBRepository)
+        public readonly IUserRepository _userRepository;
+        public UserServices(IUserRepository userRepository)
         {
-            _userHardCodedDBRepository = userHardCodedDBRepository;
+            _userRepository = userRepository;
         }
 
-        public void AddUser(CreateUserDTO createUserDTO)
+        public int AddUser(CreateUserDTO createUserDTO)
         {
-            if (_userHardCodedDBRepository.GetUsers().All(user => user.Username != createUserDTO.UserName))
+            if (_userRepository.GetUsers().All(user => user.Username != createUserDTO.UserName))
             {
-                _userHardCodedDBRepository.AddUser(
-                    new User
-                    {
-                        Id = _userHardCodedDBRepository.GetUsers().Max(x => x.Id) + 1,
-                        Username = createUserDTO.UserName,
-                        Password = createUserDTO.Password
-                    }
-                    );
+                try
+                {
+                    int newUser = _userRepository.AddUser(
+                        new User
+                        {
+                            Username = createUserDTO.UserName,
+                            Password = createUserDTO.Password
+                        }
+                        );
+                    return newUser;
+                }
+                catch(Exception)
+                {
+                    throw new Exception();
+                }
             }
             else
             {
                 throw new InvalidOperationException();
             }
+        }
+
+        public User? AuthUser(CredentialsDTO credentialsDTO)
+        {
+            return _userRepository.AuthUser(credentialsDTO);
         }
     }
 }

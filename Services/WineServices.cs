@@ -1,47 +1,82 @@
 ﻿using Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data.Entities;
-using Microsoft.VisualBasic;
 using Common.Models;
+using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Services
 {
     public class WineServices : IWineServices
     {
-        public readonly IWineHardCodedDBRepository _wineHardCodedDBRepository;
-        public WineServices(IWineHardCodedDBRepository hardCodedDBRepository)
+        public readonly IWineRepository _wineRepository;
+        public WineServices(IWineRepository wineRepository)
         {
-            _wineHardCodedDBRepository = hardCodedDBRepository;
+            _wineRepository = wineRepository;
         }
 
-
-        public void AddWine(CreateWineDTO createWineDTO)
+        public int AddWine(CreateWineDTO createWineDTO)
         {
-            if (_wineHardCodedDBRepository.GetWines().All(wine => wine.Name != createWineDTO.Name))
+            if (_wineRepository.GetWines().All(w => w.Name != createWineDTO.Name))
             {
-                _wineHardCodedDBRepository.AddWine(
-                new Wine
+                try
                 {
-                    Id = _wineHardCodedDBRepository.GetWines().Max(x => x.Id) + 1,
-                    Name = createWineDTO.Name,
-                    Variety = createWineDTO.Variety,
-                    Year = createWineDTO.Year,
-                    Region = createWineDTO.Region,
-                    Stock = createWineDTO.Stock,
-                    CreatedAt = DateTime.UtcNow,
+                    int newWine = _wineRepository.AddWine(
+                        new Wine
+                        {
+                            Name = createWineDTO.Name,
+                            Variety = createWineDTO.Variety,
+                            Year = createWineDTO.Year,
+                            Region = createWineDTO.Region,
+                            Stock = createWineDTO.Stock
+                        }
+                        );
+                    return newWine;
                 }
-                );
+                catch (Exception)
+                {
+                    throw new Exception();
+                }
             }
-            else throw new InvalidOperationException();
+            else
+            {
+                throw new InvalidOperationException();
+            }
         }
 
-        public Dictionary<string, int> GetAllWinesStock()
+        public IEnumerable<Wine> GetWines()
         {
-            return _wineHardCodedDBRepository.GetAllWinesStock();
+            try
+            {
+                return _wineRepository.GetWines();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public void UpdateWineStock(int id, int stock)
+        {
+            try
+            {
+                _wineRepository.UpdateWineStock(id, stock);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        public IEnumerable<Wine> GetByVariety(string variety)
+        {
+            try
+            {
+                return _wineRepository.GetByVariety(variety);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
     }
 }

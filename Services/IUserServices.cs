@@ -1,9 +1,11 @@
 ﻿using Common.Models;
+using Data.Entities;
 
 namespace Services
 {
     public interface IUserServices
     {
-        void AddUser(CreateUserDTO createUserDTO);
+        int AddUser(CreateUserDTO createUserDTO);
+        User? AuthUser(CredentialsDTO credentialsDTO);
     }
 }
