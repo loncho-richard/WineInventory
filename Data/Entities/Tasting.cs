@@ -12,6 +12,6 @@ namespace Data.Entities
         public string Title { get; set; }
         public DateTime? Date {  get; set; }
         public ICollection<string>? Guests { get; set; }
-        public ICollection<TastingWine> TastingWine { get; set; }
+        public ICollection<TastingWine> TastingWine { get; set; }   
     }
 }

@@ -11,5 +11,6 @@ namespace Data.Entities
         public int WineId { get; set; }
         public Wine Wine { get; set; }
         public int TastingWineId { get; set; }
+        public Tasting Tasting { get; set; }
     }
 }

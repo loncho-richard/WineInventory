@@ -51,5 +51,7 @@ namespace Data.Entities
             if (Stock - amount < 0) throw new InvalidOperationException("No hay suficiente stock disponible.");
             Stock -= amount;
         }
+
+        public ICollection<TastingWine> TastingWine { get; set; } = [];
     }
 }
